@@ -1,0 +1,25 @@
+<%= form_with(model: profile, local: true) do |form| %>
+  <% if profile.errors.any? %>
+    <h2><%= pluralize(profile.errors.count, "error") %> prohibited this link from being saved:</h2>
+
+    <ul>
+      <% profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <br>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+  <br>
+  <%= form.label :surname %>
+  <%= form.text_field :surname %>
+  <br>
+  <%= form.label :city %>
+  <%= form.text_field :city %>
+  <br>
+  <%= form.label :company %>
+  <%= form.text_field :company %>
+  <br>
+  <%= form.submit %>
+<% end %>

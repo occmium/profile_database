@@ -1,0 +1,10 @@
+Name: <%= @profile.name %><br>
+Surname: <%= @profile.surname %><br>
+City: <%= @profile.city %><br>
+Company: <%= @profile.company %><br><br>
+All SyncRequests:<br>
+<%= render partial: 'sync_request', collection: @sync_requests %>
+<br>
+<p id="notice"><%= link_to "#{notice}", @profile %></p>
+<%= link_to 'Manu Edit', edit_profile_path(@profile) %> |
+<%= link_to 'Back', profiles_path %>
