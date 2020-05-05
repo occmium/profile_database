@@ -1,9 +1,13 @@
 class UpdateProfileService
-  def initialize(profile_id)
-    @profile = Profile.find(profile_id)
+  def initialize(sync_request_id)
+    @sync_request = SyncRequest.find(sync_request_id)
+    @profile = @sync_request.profile
    end
 
   def perform
+    raise "Your request has been queued!" if @profile.in_process?
+    @sync_request.in_process!
+
     update_name
     update_surname
     update_city

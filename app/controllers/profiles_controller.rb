@@ -22,12 +22,8 @@ class ProfilesController < ApplicationController
   
   def autoupdate
     @profile = Profile.find(params[:format])
-    if @profile.in_process?
-      redirect_to @profile, notice: 'Wait for the update to finish!'
-    else
-      AutoupdateWorker.perform_async(@profile.id)
-      redirect_to @profile, notice: 'A profile update request has been successfully created.'
-    end
+    QueryCreatorService.new(@profile).perform
+    redirect_to @profile, notice: 'A profile update request has been successfully created.'
   end
 
   private
